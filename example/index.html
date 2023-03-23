@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JavaScript Slideshow Demo</title>
+    <link rel="stylesheet" href="/slideshow/slideshow.css" />
+    <script type="text/javascript" src="/slideshow/slideshow.js"></script>
+    <script>
+        window.onload = function () {
+            initSlideShow("./car.json", document.getElementById("car_slideshow"));
+            initSlideShow("./house.json", document.getElementById("house_slideshow"));
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Simple Slideshow Demo</h1>
+    <div id="car_slideshow" data-caption-template="Image [index] of [length]" data-image-width="100%"
+        data-image-height="300px"></div>
+    <br />
+    <div id="house_slideshow" data-manual-controls="false" data-auto-advance="2000"></div>
+</body>
+
+</html>

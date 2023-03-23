@@ -1,0 +1,16 @@
+{
+    "content": [
+        {
+            "header_image": "images/car1.jpg",
+            "description": "<h3>Yellow Car</h3><p>This is a <a target='_blank' href='https:/www.google.com/search?q=yellow+car'>yellow car</a></p>"
+        },
+        {
+            "header_image": "images/car2.jpg",
+            "description": "<h3>Red Car</h3><p>This is a <a target='_blank' href='https:/www.google.com/search?q=red+car'>red car</a></p>"
+        },
+        {
+            "header_image": "images/car3.jpg",
+            "description": "<h3>White Car</h3><p>This is a <a target='_blank' href='https:/www.google.com/search?q=white+car'>white car</a></p>"
+        }
+    ]
+}
