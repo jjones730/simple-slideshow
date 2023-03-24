@@ -4,7 +4,7 @@ let global_ss_data = [];
 
   global_ss_data = [
     { 
-      content: [
+      slides: [
         {
             header_image: "url",    # From JSON
             description:  "text",   # From JSON
@@ -46,10 +46,10 @@ function initSlideShow(jsonPath, container) {
             throw new Error("Unable to load slideshow json from " + jsonPath);
         })
         .then(data => {
-            global_ss_data[slideShowIndex].content = data.content;
+            global_ss_data[slideShowIndex].slides = data.slides;
             container.innerHTML = renderUI(container, slideShowIndex, global_ss_data[slideShowIndex]);
             if (global_ss_data[slideShowIndex].preload_images) {
-                preloadImages(data.content, slideShowIndex);
+                preloadImages(data.slides, slideShowIndex);
             }
 
             slideTo(0, slideShowIndex);
@@ -114,21 +114,21 @@ function slidePrev(slideShowIndex) {
 function slideTo(proposedIndex, slideShowIndex) {
     // Get and validate new index from proposed index;
     let newIndex = proposedIndex;
-    if (newIndex >= global_ss_data[slideShowIndex].content.length) { newIndex = 0; }
-    if (newIndex < 0) { newIndex = global_ss_data[slideShowIndex].content.length - 1; }
+    if (newIndex >= global_ss_data[slideShowIndex].slides.length) { newIndex = 0; }
+    if (newIndex < 0) { newIndex = global_ss_data[slideShowIndex].slides.length - 1; }
 
     // Cache new index in global data
     global_ss_data[slideShowIndex].current_index = newIndex;
 
-    // Update slide with content data from new index
-    let content = global_ss_data[slideShowIndex].content[newIndex];
-    document.getElementById('ss_header_' + slideShowIndex).style.backgroundImage = "url('" + content.header_image + "')";
+    // Update slide with data from new index
+    let newSlide = global_ss_data[slideShowIndex].slides[newIndex];
+    document.getElementById('ss_header_' + slideShowIndex).style.backgroundImage = "url('" + newSlide.header_image + "')";
     document.getElementById('ss_caption_' + slideShowIndex).innerHTML = getCaption(global_ss_data[slideShowIndex]);
-    document.getElementById('ss_description_' + slideShowIndex).innerHTML = content.description || "";
+    document.getElementById('ss_description_' + slideShowIndex).innerHTML = newSlide.description || "";
 }
 
 function getCaption(slideshowData) {
     return slideshowData.caption_template
         .replace("[index]", slideshowData.current_index + 1)
-        .replace("[length]", slideshowData.content.length)
+        .replace("[length]", slideshowData.slides.length)
 }
